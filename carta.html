@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Libro de San Valentín</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600&family=Great+Vibes&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#E11D48",
+                        "background-light": "#FFF1F2",
+                        "background-dark": "#1F1114",
+                    },
+                    fontFamily: {
+                        display: ["'Dancing Script'", "cursive"],
+                        romantic: ["'Great Vibes'", "cursive"],
+                        body: ["'Quicksand'", "sans-serif"],
+                        serif: ["'EB Garamond'", "serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        .watercolor-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 182, 193, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+        .page-fold {
+            box-shadow: inset 10px 0 15px -10px rgba(0,0,0,0.1);
+        }
+        .heart-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 35.7L17.5 33.4C8.8 25.5 3 20.3 3 13.9 3 8.7 7.1 4.6 12.3 4.6c2.9 0 5.7 1.4 7.7 3.5 2-2.1 4.8-3.5 7.7-3.5 5.2 0 9.3 4.1 9.3 9.3 0 6.4-5.8 11.6-14.5 19.5L20 35.7z' fill='%23fb7185' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Book spread styles */
+        .book-spread {
+            background-color: #fce7e9;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 192, 203, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(254, 226, 228, 0.5) 0%, transparent 100%);
+        }
+        
+        .spine-pattern {
+            background: repeating-linear-gradient(
+                to bottom,
+                #D45D79,
+                #D45D79 12px,
+                #FFFFFF 12px,
+                #FFFFFF 24px
+            );
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .page-shadow {
+            box-shadow: inset 10px 0 15px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hide/show pages */
+        .page-container {
+            display: none !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .page-container.active {
+            display: flex !important;
+            position: relative;
+        }
+        
+        /* Cover page special handling */
+        #cover-page {
+            display: flex !important;
+            position: relative;
+        }
+        
+        #cover-page.hidden {
+            display: none !important;
+        }
+        
+        /* Fade transition */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body transition-colors duration-500 min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    
+    <!-- Floating hearts background -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <span class="material-icons absolute text-rose-300/30 dark:text-rose-900/20 text-4xl animate-float top-10 left-[10%]">favorite</span>
+        <span class="material-icons absolute text-rose-400/20 dark:text-rose-800/20 text-6xl animate-pulse-slow top-1/4 right-[15%]">favorite</span>
+        <span class="material-icons absolute text-rose-200/40 dark:text-rose-900/10 text-3xl animate-float bottom-20 left-[20%]" style="animation-delay: 1s;">favorite</span>
+        <span class="material-icons absolute text-rose-500/10 dark:text-rose-700/10 text-8xl animate-pulse-slow bottom-10 right-[5%]" style="animation-delay: 2s;">favorite</span>
+    </div>
+
+    <!-- COVER PAGE -->
+    <main id="cover-page" class="relative w-full max-w-md aspect-[3/4] bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden border-l-8 border-primary transition-transform hover:scale-[1.01] duration-300">
+        <div class="absolute left-0 top-0 bottom-0 w-2 bg-primary/10 dark:bg-primary/5"></div>
+        <div class="h-full w-full p-8 flex flex-col items-center text-center watercolor-bg heart-pattern relative">
+            <div class="absolute top-0 right-0 p-4 opacity-40">
+                <span class="material-icons text-primary">auto_awesome</span>
+            </div>
+            <div class="mt-8 space-y-4">
+                <h1 class="font-display text-4xl md:text-5xl text-rose-600 dark:text-rose-400 leading-tight">
+                    ¿Quieres ser mi San Valentín?
+                </h1>
+                <p class="text-zinc-600 dark:text-zinc-400 font-medium italic">
+                    Tengo una pregunta muy importante que hacerte... 🌹
+                </p>
+            </div>
+            <div class="flex-grow flex items-center justify-center w-full my-8">
+                <div class="relative group cursor-pointer" onclick="unlockBook()">
+                    <div class="bg-white dark:bg-zinc-800 p-3 shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500 rounded-sm">
+                        <div class="overflow-hidden rounded-sm border border-rose-100 dark:border-rose-950">
+                            <img alt="Romantic Heart Illustration" class="w-48 h-48 md:w-64 md:h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7dj_x1IU_4OHXgaZAeB2c0ABbkS9C9zxWU6cjD8_m9twNowkmIns03VZUuWbyxkhOcijQn2nACH6jV47DHD7Sc-jZKZb6AH_oB-8reWSRSqSsxvTDhgVMI5h7XyqismuHzG-cXt38E-VltU3RyRo--pZUbwGY35l9l9rJftD0GglZeTQEZqXCCOuDrHCKSf0AYOYajGj-oCT17d86g_lm_gGqNDfV75MuBaUiG8Lctt6H5ZHGkDBS8yMPq3sBNuC8k9fvyuWKD-9H"/>
+                        </div>
+                        <div class="pt-4 pb-1 text-center">
+                            <p class="font-romantic text-2xl text-rose-500 dark:text-rose-400">Happy Valentine's Day</p>
+                        </div>
+                    </div>
+                    <span class="material-icons absolute -top-4 -left-4 text-primary animate-bounce text-xl">favorite</span>
+                    <span class="material-icons absolute -bottom-2 -right-2 text-rose-300 animate-pulse text-lg">favorite</span>
+                </div>
+            </div>
+            <div class="w-full flex flex-col items-center space-y-6 pb-4">
+                <button class="group relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white bg-primary rounded-full overflow-hidden transition-all duration-300 hover:bg-rose-700 hover:shadow-rose-500/50 shadow-lg active:scale-95" onclick="unlockBook()">
+                    <span class="relative flex items-center gap-2">
+                        Sí, abrir
+                        <span class="material-icons text-sm transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                    </span>
+                    <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out"></div>
+                </button>
+                <p class="text-xs text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-bold">
+                    Hecho con amor • 2024
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- PAGE 1 - First Spread -->
+    <div id="page-1" class="page-container relative w-full max-w-5xl aspect-[1.4/1] bg-white rounded-lg shadow-2xl flex overflow-hidden border-4 border-white/50 fade-in">
+        <div class="relative flex-1 book-spread flex flex-col items-center justify-center p-6 sm:p-12 overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-60 pointer-events-none">
+                <div class="absolute top-4 left-4 text-primary opacity-30 rotate-12"><span class="material-symbols-outlined text-4xl">favorite</span></div>
+                <div class="absolute bottom-12 right-8 text-primary opacity-20 -rotate-12"><span class="material-symbols-outlined text-5xl">favorite</span></div>
+            </div>
+            <div class="relative w-full max-w-[85%] bg-white p-3 shadow-xl transform -rotate-1 mb-8">
+                <img alt="Colorful vibrant flowers with a hummingbird" class="w-full aspect-[4/3] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1wMglq5QnWPUD8tsv5858luQ1yLc1Z1g5v4OvyLxuGcexn33J7hX1NIbtofx3CueeDjI4UVLc37bt9owHdjb31vbzXAu6hgWFKuJJcD0_KitzaPrse19B5ftxle1TGnQLAKvdHuyk3GYlSsCO2YbX3XdfTzxcV241JWLYJLlwzRZKkzTASikUUxM7vTCDjhWF4jmVaHw2o-Aslndt-CFe0-tKeH7YtGmZBwsZmTZID79OtJ77QMfwxUvDW8wxgnosE5JtWeeNUcXe"/>
+            </div>
+            <p class="text-gray-700 text-xl sm:text-2xl text-center italic leading-relaxed px-4">
+                "Y cada sonrisa tuya ilumina mi alma."
+            </p>
+            <div class="absolute bottom-6 left-6">
+                <button onclick="goToCover()" class="flex items-center gap-1 bg-[#d45d79cc] hover:bg-primary text-white px-6 py-2 rounded-full transition-all text-sm font-sans font-medium shadow-md">
+                    <span class="material-symbols-outlined text-base">arrow_back</span>
+                    Anterior
+                </button>
+            </div>
+        </div>
+        <div class="w-6 sm:w-8 h-full spine-pattern z-10 shadow-[inset_0_0_10px_rgba(0,0,0,0.2)] border-x border-black/5"></div>
+        <div class="relative flex-1 book-spread flex flex-col items-center justify-center p-8 sm:p-16 overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-60 pointer-events-none">
+                <div class="absolute top-12 right-6 text-primary opacity-25 -rotate-6"><span class="material-symbols-outlined text-4xl">favorite</span></div>
+                <div class="absolute bottom-16 left-10 text-primary opacity-20 rotate-45"><span class="material-symbols-outlined text-3xl">favorite</span></div>
+            </div>
+            <div class="relative z-10 text-center max-w-md">
+                <div class="flex items-center justify-center gap-3 mb-6">
+                    <h1 class="font-display text-4xl sm:text-5xl text-[#b04a61]">
+                        ¿Por qué tú?
+                    </h1>
+                    <span class="material-symbols-outlined text-primary text-3xl fill-current">favorite</span>
+                </div>
+                <div class="space-y-6">
+                    <p class="text-gray-700 text-lg sm:text-xl leading-relaxed italic">
+                        Porque me haces reír cuando no quiero, me apoyas cuando no puedo y me amas tal como soy.
+                    </p>
+                    <p class="text-gray-800 font-bold text-xl sm:text-2xl pt-2">
+                        Eres perfecta para mí.
+                    </p>
+                </div>
+            </div>
+            <div class="absolute bottom-6 right-6">
+                <button onclick="nextPage()" class="flex items-center gap-1 bg-primary hover:bg-[#b04a61] text-white px-6 py-2 rounded-full transition-all text-sm font-sans font-medium shadow-md">
+                    Siguiente
+                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 - Second Spread -->
+    <div id="page-2" class="page-container w-full max-w-4xl aspect-[4/3] md:aspect-[16/10] flex bg-white dark:bg-neutral-800 rounded-lg shadow-2xl overflow-hidden fade-in">
+        <div class="flex-1 relative flex flex-col items-center justify-center p-6 md:p-12 text-center border-r border-neutral-100 dark:border-neutral-700 bg-[#FDF2F2]">
+            <div class="absolute top-0 left-0 p-4 opacity-30 dark:opacity-10 pointer-events-none">
+                <img alt="decoration" class="w-16 h-16 rotate-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6X0R_MjSaf8e0-WwJ3PZNAodgNgHHvbnIlkJ7aNoDQZrnWY7_4TZqgmgY0j2pgpto74D63W_CNSKgi-VzjvZXxnHvqi9DDoaPgupkVqa_dsYMFgdcop5s3ngpfir3ylCzjZ1oZzCXQGwR9hNCWPpdtah3EERX2M8pSgcZ6gy3HYKkH8ps5e3AatrkAs2qBYmDbtWlNqEY9vpc7vAJP8nnQ3_ZjIzIAbO9bqnpgJe5NQz6PvXuLgAZMvUfigG3hCWM6eLh5Glq-40U"/>
+            </div>
+            <div class="absolute bottom-0 left-0 p-4 opacity-30 dark:opacity-10 pointer-events-none">
+                <img alt="decoration" class="w-16 h-16 rotate-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkQrkW3EfEJUC4mOJHA6zfBzANM8uzbq3nMKt3Aw7N5L7pyZfHkQzPUmgoPg1S_sEBS1AdizlE07QlODbHrTLpdhpZN6CN7NmFGfA9ACke53PaQZoJ5mJe2_F-3ZRQ1D4GecyEw9z-ud40xoosY05H0QsYI9g87I40zNZbpJrEvJcPsMBpUcKClYlmLd6PX4I3PAA4uriiWnDLSSJLvnBdWVwl33Vex7trx2ra1vIdxOUP3FY3i3TgGwTavVREtA3yq1ckDilyhUWK"/>
+            </div>
+            <h1 class="font-romantic text-4xl md:text-5xl lg:text-6xl text-primary mb-4">
+                Eres mi lugar favorito
+            </h1>
+            <div class="mb-6">
+                <span class="material-symbols-outlined text-4xl md:text-5xl text-orange-400 drop-shadow-sm">home</span>
+            </div>
+            <p class="font-sans text-lg md:text-xl text-neutral-600 dark:text-neutral-300 max-w-xs leading-relaxed">
+                No importa dónde estemos, si estoy contigo, estoy en casa. Gracias por llenar mis días de color y alegría.
+            </p>
+            <div class="absolute bottom-6 left-6">
+                <button onclick="prevPage()" class="flex items-center gap-2 px-5 py-2 bg-primary/20 hover:bg-primary/30 text-primary font-medium rounded-full transition-all text-sm group">
+                    <span class="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Anterior
+                </button>
+            </div>
+        </div>
+        <div class="w-6 sm:w-8 h-full spine-pattern z-10 shadow-[inset_0_0_10px_rgba(0,0,0,0.2)] border-x border-black/5"></div>
+        <div class="flex-1 relative flex flex-col items-center justify-center p-6 md:p-12 text-center page-shadow bg-[#FDF2F2]">
+            <div class="absolute top-0 right-0 p-4 opacity-30 dark:opacity-10 pointer-events-none">
+                <img alt="decoration" class="w-16 h-16 -rotate-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBnt5Mt6Q2QxSfKPhRF5Enieg1Wc0G5X4bx4O_O06osKOz43ktfma-2ft3GQOd82dyyQQjT1qD1cDGi_OLGtMrh2jBiv3qj82wGkgFxSFGZThHqf28vKdsu_2CmSlCxCT_7LNzfKHskvhD_z5t6xg9GEDCvC6KQlaoMta2vt9LpUkVzB49xOw6r0YRQ2rjIzdSLTY7Z_SaShMiqd9fiLHIx6gcfDs1Lnfc_lTEAS-OEj_jrT7-MM9t-G8gp-Lp6SGP-45LsKSPERd9"/>
+            </div>
+            <div class="absolute bottom-0 right-0 p-4 opacity-30 dark:opacity-10 pointer-events-none">
+                <img alt="decoration" class="w-16 h-16 180" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRihNbuIGe035Idnbxwo-AWZ3kmENJQ1i16B2cdrNZeUb1fQUUVYkbw_TCh1R7eFdi9hSNHzF06qMJwgR8bD63m9le-2IyXv4G2v1p_6q5b2FDv4QH_W98_uAvbMrOwWiUWmJu_ZK2kV14wQoiZsF7pPUMG5dSWCgnA2WAOyJfcQky0fq9eef2H6WUXzb8h1eArc6Gwu99Gjlvy7N2Omm5_ylgkDc-NIJAURQOPXa1kfMheMqDIiu89vBtVxEcjY8PLpKX7EpQoZgm" style="transform: rotate(180deg);"/>
+            </div>
+            <div class="relative w-full aspect-square md:aspect-video mb-6 p-2 bg-white dark:bg-neutral-700 shadow-lg rounded-sm transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                <div class="w-full h-full overflow-hidden border-4 border-white dark:border-neutral-600 bg-neutral-100 flex items-center justify-center">
+                    <img alt="Abstract colorful romantic illustration" class="w-full h-full object-cover grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQzGAykpDQS-YK08Ngjm_aomYDHyuwLbtY6qBgVLNm1NcqKJj-8v9O66b2n1vZc8RUuzvj_LzX6XZdrDciO8fr1mNB_U2-PqWZz9W5rtVfajyprJgNYONJpNyo3rhmChvr6wccwlKLsT0mndRmB0OhOIG73tyUrHCRnHDbmRmG614M3S_R1Y-KBBp7S-HcLvKGccsY2TuMVIA4y7qYYKh6kUS-YaCcmru09Fb0vWhIkbpbBX5_cHTm2Tt4SyuZYdo9PvJpXxOUbYe"/>
+                </div>
+            </div>
+            <p class="font-display text-2xl md:text-3xl text-neutral-700 dark:text-neutral-200 mb-2">
+                Cada momento a tu lado es un tesoro.
+            </p>
+            <div class="absolute bottom-6 right-6">
+                <button onclick="nextPage()" class="flex items-center gap-2 px-5 py-2 bg-primary text-white font-medium rounded-full shadow-lg shadow-primary/30 hover:bg-red-500 transition-all text-sm group">
+                    Siguiente
+                    <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3 - Final Spread -->
+    <div id="page-3" class="page-container w-full max-w-4xl aspect-[1.4/1] bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl flex overflow-hidden relative border-8 border-white/50 dark:border-zinc-800/50 fade-in">
+        <div class="flex-1 bg-[#FDF2F2] dark:bg-zinc-800 relative p-8 flex flex-col items-center justify-between border-r border-black/10 dark:border-white/5">
+            <div class="absolute top-0 left-0 p-4">
+                <img alt="Heart Decoration" class="w-12 h-12 opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSHdkevVuDDYmJT-p0U72vYOGVTWeOoE1RppqKSPZA3Ygx_9oOE-DDk_WKvgEmQQxYpK2sWyld81Jak34wu0eQsB_Xh7t68NzBZ0vmES-SDmUCD9wmgpisaSFJa3DxWNwZZ0bB8pGuOYxYfFnyhsy-O9CXPYbwg-ocawY70BHyP0FMr5qY-gioktQtYI7YcOm-xPyRnfO1hQA8Xk7Ut1kzP0XFM5FD7RI9PKKTEq3_2oD9tfj5ShmFE4jpoxKkzDGshzrRdg9tRdb-"/>
+            </div>
+            <div class="absolute top-0 right-0 p-4">
+                <img alt="Small Hearts" class="w-8 h-8 opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALJVsVJNRU7e9BYPHq0msRRCOUCAZlu2zzvzP5HWj8NE9rA-Bq2LXdRCheI7dth-DvQ9owcK9N7L0psaSkz95ZHEQSItgrsCjwkBAiUuNFexB9yhYRVWWAuKHfvqWAA2UxGDDjm0V0Pbv2D-KNO7KOdR3_r8KqHNNI_DM7WPp30i2EKuX2XnyVVHERcK7DlileL9O-FTKBA49VoPQpJHwtxpcgithBx1bmuEdYy9G9FfiFYG8A6yxAQfBxTxN8facMh3CRI4FfjAP-"/>
+            </div>
+            <div class="text-center mt-6">
+                <h1 class="font-romantic text-5xl md:text-6xl text-primary mb-4 leading-tight">
+                    Te Amo Infinitamente
+                </h1>
+                <p class="font-sans text-gray-700 dark:text-gray-300 text-lg max-w-xs mx-auto leading-relaxed">
+                    Gracias por decir que sí a ser mi San Valentín. Hoy y siempre, <span class="text-primary font-bold">eres tú</span>. 💖
+                </p>
+            </div>
+            <div class="w-full max-w-[280px] bg-white dark:bg-zinc-700 p-2 shadow-lg rotate-1 transform hover:rotate-0 transition-transform duration-300">
+                <div class="relative overflow-hidden aspect-[4/5] bg-gray-200">
+                    <img alt="Couple with red umbrella painting" class="w-full h-full object-cover grayscale brightness-90 sepia-[0.2] contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6uJER2S73222MqERdMCY1y16KzN_zZqd8BuloCr8G5UuK9GqjITw2YDH8--156yZOh2IKgmZH399-bbLZCWgeGijD8e7LULRbteWa9HA0bZyniHznwj7RJzoruzUk7bSpR7gAjmAG2v2LZdOA5FYNxwXNkAIZC4R73_wLMs0BMovcPWhCYpzcuOELLHEmmb8yCXRhvsMslYdLQB9CVAPtQ4urwE_AuOaDHlahdKiLxkXjTSI8EATQrKwq2ZRDevOeOkb12YbCn3wD"/>
+                    <div class="absolute inset-0 pointer-events-none mix-blend-multiply flex items-center justify-center">
+                        <div class="w-20 h-20 bg-red-600/30 rounded-full blur-xl translate-y-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex justify-start">
+                <button onclick="prevPage()" class="flex items-center gap-2 px-6 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-all duration-300 font-semibold group">
+                    <span class="material-icons text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Anterior
+                </button>
+            </div>
+        </div>
+        <div class="flex-1 bg-pink-100 dark:bg-zinc-900 relative p-8 flex items-center justify-center">
+            <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black/10 to-transparent pointer-events-none"></div>
+            <div class="flex flex-col items-center opacity-30 dark:opacity-20 grayscale">
+                <span class="material-icons text-7xl text-primary">auto_stories</span>
+                <p class="mt-4 font-display text-xl text-primary">Nuestro Libro</p>
+            </div>
+            <div class="absolute inset-0 bg-[#FFB6C1]/30 dark:bg-primary/10 pointer-events-none"></div>
+            <div class="absolute left-0 top-0 bottom-0 w-4 flex flex-col justify-around py-4 opacity-50">
+                <div class="h-2 w-full bg-primary/30"></div>
+                <div class="h-2 w-full bg-primary/30"></div>
+                <div class="h-2 w-full bg-primary/30"></div>
+                <div class="h-2 w-full bg-primary/30"></div>
+                <div class="h-2 w-full bg-primary/30"></div>
+                <div class="h-2 w-full bg-primary/30"></div>
+                <div class="h-2 w-full bg-primary/30"></div>
+                <div class="h-2 w-full bg-primary/30"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lock Modal -->
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" id="lock-modal">
+        <div class="bg-white dark:bg-zinc-900 w-full max-w-sm rounded-3xl p-8 shadow-2xl text-center border border-rose-100 dark:border-rose-900">
+            <div class="flex justify-center mb-6">
+                <div class="relative">
+                    <span class="material-icons text-6xl text-amber-400 drop-shadow-md">lock</span>
+                    <span class="material-icons absolute -top-2 -right-2 text-primary animate-pulse">auto_awesome</span>
+                </div>
+            </div>
+            <h2 class="font-display text-3xl text-rose-600 dark:text-rose-400 mb-2">Acceso al Corazón</h2>
+            <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-6">
+                Para ver lo que siento por ti, ingresa nuestra fecha especial o la clave secreta:
+            </p>
+            <div class="space-y-4">
+                <input id="code-input" class="w-full px-6 py-4 bg-rose-50 dark:bg-zinc-800 border-none rounded-2xl text-center text-rose-900 dark:text-rose-100 focus:ring-2 focus:ring-primary placeholder-rose-200 dark:placeholder-zinc-600 font-bold tracking-widest text-lg" placeholder="Ej: 03/03/2024" type="text"/>
+                <div id="error-message" class="text-rose-600 text-sm hidden">❌ Código incorrecto. Intenta de nuevo.</div>
+                <div class="flex gap-3">
+                    <button class="flex-1 px-6 py-3 border border-rose-100 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 rounded-2xl hover:bg-rose-50 dark:hover:bg-zinc-800 transition-colors" onclick="closeModal()">
+                        Cancelar
+                    </button>
+                    <button onclick="checkCode()" class="flex-1 px-6 py-3 bg-primary text-white rounded-2xl font-semibold shadow-md shadow-rose-200 dark:shadow-none hover:bg-rose-700 transition-colors flex items-center justify-center gap-1">
+                        Desbloquear <span class="material-icons text-sm">favorite</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const SECRET_CODE = '07/10/2025'; // Cambia tu código aquí
+        const ALTERNATIVE_CODES = ['07102025', '071025', '0710']; // Códigos adicionales
+        
+        let currentPage = 0;
+        const totalPages = 3;
+
+        // Open lock modal
+        function unlockBook() {
+            const modal = document.getElementById('lock-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+            }, 10);
+            document.getElementById('code-input').focus();
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('lock-modal');
+            modal.classList.remove('opacity-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+            document.getElementById('code-input').value = '';
+            document.getElementById('error-message').classList.add('hidden');
+        }
+
+        // Check code
+        function checkCode() {
+            const code = document.getElementById('code-input').value.trim();
+            const errorMsg = document.getElementById('error-message');
+
+            if (code === SECRET_CODE || ALTERNATIVE_CODES.includes(code.toLowerCase())) {
+                closeModal();
+                // Redirect to first page
+                window.location.href = '1-pagina.html';
+            } else {
+                errorMsg.classList.remove('hidden');
+                document.getElementById('code-input').value = '';
+                setTimeout(() => {
+                    errorMsg.classList.add('hidden');
+                }, 3000);
+            }
+        }
+
+        // Navigate to specific page
+        function goToPage(pageNum) {
+            // Hide all pages
+            const coverPage = document.getElementById('cover-page');
+            const page1 = document.getElementById('page-1');
+            const page2 = document.getElementById('page-2');
+            const page3 = document.getElementById('page-3');
+            
+            coverPage.classList.remove('active');
+            coverPage.classList.add('hidden');
+            page1.classList.remove('active');
+            page2.classList.remove('active');
+            page3.classList.remove('active');
+
+            // Show requested page
+            if (pageNum === 0) {
+                coverPage.classList.add('active');
+                coverPage.classList.remove('hidden');
+            } else if (pageNum === 1) {
+                page1.classList.add('active');
+            } else if (pageNum === 2) {
+                page2.classList.add('active');
+            } else if (pageNum === 3) {
+                page3.classList.add('active');
+            }
+
+            currentPage = pageNum;
+        }
+
+        // Next page
+        function nextPage() {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+
+        // Previous page
+        function prevPage() {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        // Go to cover
+        function goToCover() {
+            goToPage(0);
+        }
+
+        // Enter key support
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const modal = document.getElementById('lock-modal');
+                if (!modal.classList.contains('hidden')) {
+                    checkCode();
+                }
+            }
+        });
+
+        // Toggle Dark Mode with 'd' key for testing
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'd') {
+                document.documentElement.classList.toggle('dark');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Acceso al Corazón - Valentine's Book</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#f43f5e", // Rose 500
+              "background-light": "#fff1f2", // Rose 50
+              "background-dark": "#1a0608",
+            },
+            fontFamily: {
+              display: ["Dancing Script", "cursive"],
+              body: ["Quicksand", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "1.5rem",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        .glass-morphism {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .dark .glass-morphism {
+            background: rgba(45, 10, 15, 0.9);
+        }
+        .heart-glow {
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.3);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-body min-h-screen flex items-center justify-center p-4 overflow-hidden relative">
+<div class="absolute inset-0 z-0 pointer-events-none opacity-40">
+<div class="absolute top-10 left-10 text-primary opacity-20 floating" style="animation-delay: 0s;">
+<span class="material-icons text-6xl">favorite</span>
+</div>
+<div class="absolute bottom-20 right-10 text-primary opacity-20 floating" style="animation-delay: 1s;">
+<span class="material-icons text-8xl">favorite</span>
+</div>
+<div class="absolute top-1/4 right-1/4 text-primary opacity-20 floating" style="animation-delay: 0.5s;">
+<span class="material-icons text-4xl">auto_awesome</span>
+</div>
+</div>
+<div class="relative z-10 w-full max-w-sm glass-morphism rounded-3xl p-8 border border-white/50 dark:border-white/10 shadow-2xl heart-glow text-center">
+<div class="flex justify-center items-center space-x-3 mb-6">
+<div class="bg-yellow-100 dark:bg-yellow-900/30 p-3 rounded-2xl">
+<span class="material-icons text-yellow-500 text-3xl">lock</span>
+</div>
+<div class="text-yellow-400">
+<span class="material-icons text-2xl floating">auto_awesome</span>
+</div>
+</div>
+<h1 class="font-display text-4xl text-primary mb-4">
+            Acceso al Corazón
+        </h1>
+<p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-8 px-2">
+            Para ver lo que siento por ti, ingresa nuestra fecha especial o la clave secreta:
+        </p>
+<div class="relative mb-8">
+<input class="w-full bg-white/50 dark:bg-black/20 border-2 border-rose-100 dark:border-rose-900/30 rounded-full py-4 px-6 text-center text-lg font-semibold tracking-widest focus:outline-none focus:border-primary transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-600" placeholder="Ej: 03/03/2024" type="text"/>
+</div>
+<div class="flex flex-col space-y-3">
+<button class="bg-primary hover:bg-rose-600 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-rose-200 dark:shadow-none flex items-center justify-center space-x-2 active:scale-95 transition-all">
+<span>Desbloquear</span>
+<span class="material-icons text-sm">favorite</span>
+</button>
+<button class="bg-transparent hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 font-semibold py-3 px-8 rounded-full transition-colors active:scale-95">
+                Cancelar
+            </button>
+</div>
+<div class="mt-8 flex justify-center">
+<div class="h-1 w-12 bg-rose-200 dark:bg-rose-900/50 rounded-full"></div>
+</div>
+</div>
+<div class="absolute bottom-6 flex flex-col items-center animate-bounce opacity-60">
+<span class="material-icons text-primary text-2xl">expand_less</span>
+<span class="text-[10px] uppercase tracking-widest text-primary font-bold">Abrir Libro</span>
+</div>
+<div class="fixed top-4 right-4">
+<button class="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons text-gray-700 dark:text-gray-200">dark_mode</span>
+</button>
+</div>
+
+</body></html>

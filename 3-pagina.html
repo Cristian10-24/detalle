@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Valentine Book - Final Spread</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Great+Vibes&amp;family=Quicksand:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D65A6D",
+                        "background-light": "#FFF0F1",
+                        "background-dark": "#1a0b0d",
+                        "page-light": "#FDF2F2",
+                    },
+                    fontFamily: {
+                        display: ["'Dancing Script'", "cursive"],
+                        romantic: ["'Great Vibes'", "cursive"],
+                        sans: ["'Quicksand'", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.book-container {
+    perspective: 1500px
+    }
+.paper-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDZfw6FrmIdscmYkCuoB3hETSqfouWBW3NCMsomC0ldb4wbHeVgCUHndhcq-CcPTWYNXZYOLmxtPCJZG7ZZtpo3GsyuBu-J8k5kMQTYnOeWVWQNGpo0heVswiFhW4PAJdlCDXT2I3PD_7my1dVbzdaYDWYAjKJ2eZoaOYHOjBonsZUFMGR0r1ya4ts_M_ISz-RoO727KvtN4TABG4IwX1QxRsgSuY2Cp0-4zZQrBkvLIarS0UNYUUpqqC2dJRl3nmCiZ1sUSUXdd1CB)
+    }
+.heart-pattern {
+    background-image: radial-gradient(#D65A6D 0.5px, transparent 0.5px);
+    background-size: 20px 20px
+    }
+.floating {
+    animation: floating 3s ease-in-out infinite
+    }
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+        } 50% {
+        transform: translateY(-10px);
+        } 100% {
+        transform: translateY(0px);
+        }
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center p-4 overflow-hidden">
+<div class="fixed inset-0 pointer-events-none opacity-20 dark:opacity-10">
+<span class="material-icons absolute top-10 left-[10%] text-primary floating" style="font-size: 24px;">favorite</span>
+<span class="material-icons absolute top-40 left-[80%] text-primary floating" style="animation-delay: 1s; font-size: 32px;">favorite</span>
+<span class="material-icons absolute bottom-20 left-[30%] text-primary floating" style="animation-delay: 2s; font-size: 20px;">favorite</span>
+<span class="material-icons absolute top-[60%] left-[90%] text-primary floating" style="animation-delay: 1.5s; font-size: 28px;">favorite</span>
+</div>
+<div class="w-full max-w-4xl aspect-[1.4/1] bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl flex overflow-hidden relative border-8 border-white/50 dark:border-zinc-800/50">
+<div class="flex-1 bg-page-light dark:bg-zinc-800 relative p-8 flex flex-col items-center justify-between border-r border-black/10 dark:border-white/5 paper-texture">
+<div class="absolute top-0 left-0 p-4">
+<img alt="Heart Decoration" class="w-12 h-12 opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSHdkevVuDDYmJT-p0U72vYOGVTWeOoE1RppqKSPZA3Ygx_9oOE-DDk_WKvgEmQQxYpK2sWyld81Jak34wu0eQsB_Xh7t68NzBZ0vmES-SDmUCD9wmgpisaSFJa3DxWNwZZ0bB8pGuOYxYfFnyhsy-O9CXPYbwg-ocawY70BHyP0FMr5qY-gioktQtYI7YcOm-xPyRnfO1hQA8Xk7Ut1kzP0XFM5FD7RI9PKKTEq3_2oD9tfj5ShmFE4jpoxKkzDGshzrRdg9tRdb-"/>
+</div>
+<div class="absolute top-0 right-0 p-4">
+<img alt="Small Hearts" class="w-8 h-8 opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALJVsVJNRU7e9BYPHq0msRRCOUCAZlu2zzvzP5HWj8NE9rA-Bq2LXdRCheI7dth-DvQ9owcK9N7L0psaSkz95ZHEQSItgrsCjwkBAiUuNFexB9yhYRVWWAuKHfvqWAA2UxGDDjm0V0Pbv2D-KNO7KOdR3_r8KqHNNI_DM7WPp30i2EKuX2XnyVVHERcK7DlileL9O-FTKBA49VoPQpJHwtxpcgithBx1bmuEdYy9G9FfiFYG8A6yxAQfBxTxN8facMh3CRI4FfjAP-"/>
+</div>
+<div class="text-center mt-1">
+<h1 class="font-romantic text-5xl md:text-6xl text-primary mb-4 leading-tight">
+                    Te Amo Infinitamente
+                </h1>
+<p class="font-sans text-gray-700 dark:text-gray-300 text-lg max-w-xs mx-auto leading-relaxed">
+                    Gracias por decir que sí a ser mi San Valentín. Hoy y siempre, <span class="text-primary font-bold">eres tú</span>. 💖
+                </p>
+</div>
+<div class="w-full max-w-[280px] bg-white dark:bg-zinc-700 p-2 shadow-lg rotate-1 transform hover:rotate-0 transition-transform duration-300">
+<div class="relative overflow-hidden aspect-[4/5] bg-gray-200">
+<img alt="Couple with red umbrella painting" class="w-full h-full object-cover grayscale brightness-90 sepia-[0.2] contrast-125" src="3.imagen.jpg"/>
+<div class="absolute inset-0 pointer-events-none mix-blend-multiply flex items-center justify-center">
+<div class="w-20 h-20 bg-red-600/30 rounded-full blur-xl translate-y-4"></div>
+</div>
+</div>
+</div>
+<div class="w-full flex justify-start">
+<button onclick="window.location.href='2-pagina.html'" class="flex items-center gap-2 px-6 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-all duration-300 font-semibold group">
+<span class="material-icons text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Volver
+                </button>
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black/10 to-transparent pointer-events-none"></div>
+<div class="absolute right-2 top-0 bottom-0 w-px bg-black/5 dark:bg-white/5 pointer-events-none"></div>
+</div>
+<div class="flex-1 bg-pink-100 dark:bg-zinc-900 relative p-8 flex items-center justify-center paper-texture">
+<div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black/10 to-transparent pointer-events-none"></div>
+<div class="flex flex-col items-center opacity-30 dark:opacity-20 grayscale">
+<span class="material-icons text-7xl text-primary">auto_stories</span>
+<p class="mt-4 font-display text-xl text-primary">Nuestro Libro</p>
+</div>
+<div class="absolute inset-0 bg-[#FFB6C1]/30 dark:bg-primary/10 pointer-events-none"></div>
+<div class="absolute left-0 top-0 bottom-0 w-4 flex flex-col justify-around py-4 opacity-50">
+<div class="h-2 w-full bg-primary/30"></div>
+<div class="h-2 w-full bg-primary/30"></div>
+<div class="h-2 w-full bg-primary/30"></div>
+<div class="h-2 w-full bg-primary/30"></div>
+<div class="h-2 w-full bg-primary/30"></div>
+<div class="h-2 w-full bg-primary/30"></div>
+<div class="h-2 w-full bg-primary/30"></div>
+<div class="h-2 w-full bg-primary/30"></div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-8 text-center w-full px-4 md:hidden">
+<p class="text-primary/60 dark:text-primary/40 text-sm font-sans flex items-center justify-center gap-2">
+<span class="material-icons text-xs">info</span>
+            Fin de la historia
+        </p>
+</div>
+<div class="fixed top-8 right-8">
+<button onclick="toggleMusic()" id="music-btn" class="w-12 h-12 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-primary border border-primary/20 hover:scale-110 transition-all">
+<span class="material-icons" id="music-icon">music_note</span>
+</button>
+</div>
+
+<!-- Audio player (hidden) -->
+<audio id="background-music" loop>
+    <!-- Opción 1: Usar un archivo MP3 local o de URL -->
+    <!-- <source src="tu-cancion.mp3" type="audio/mpeg"> -->
+    
+    <!-- Opción 2: Usar una canción de URL directa -->
+    <source src="https://youtu.be/4P1e3Wj5G1A?list=RD4P1e3Wj5G1A" type="audio/mpeg">
+</audio>
+
+<script>
+    let isPlaying = false;
+    const audio = document.getElementById('background-music');
+    const musicBtn = document.getElementById('music-btn');
+    const musicIcon = document.getElementById('music-icon');
+
+    function toggleMusic() {
+        if (isPlaying) {
+            // Pausar música
+            audio.pause();
+            musicIcon.textContent = 'music_note';
+            musicBtn.classList.remove('animate-pulse');
+        } else {
+            // Reproducir música
+            audio.play().catch(err => {
+                console.log('Error al reproducir:', err);
+                // Si falla, abrir YouTube/Spotify como alternativa
+                openMusicLink();
+            });
+            musicIcon.textContent = 'pause';
+            musicBtn.classList.add('animate-pulse');
+        }
+        isPlaying = !isPlaying;
+    }
+
+    // Opción alternativa: Abrir enlace a canción
+    function openMusicLink() {
+        // Cambia este enlace por tu canción favorita
+        window.open('https://youtu.be/4P1e3Wj5G1A?list=RD4P1e3Wj5G1A', '_blank');
+    }
+</script>
+
+</body></html>
